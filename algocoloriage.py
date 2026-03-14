@@ -1,3 +1,4 @@
+#1er essai 1/2
 cours, classe, numéro_séances,salle = []
 seances ={(cours, classe, numéro_séances,salle)}
 profs = {}
