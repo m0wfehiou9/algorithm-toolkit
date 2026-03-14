@@ -1,2 +1,3 @@
 # algorithm-toolkit
-implementer les 4 algorithmes
+implementer des algorithmes de creations d'emplois tu temps
+
