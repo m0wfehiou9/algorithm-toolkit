@@ -1,3 +1,4 @@
+#seances et profs sont des donnees a fournir manuellement.
 seances = [
 
 ("Maths",    "3A", 1, "A11"),
