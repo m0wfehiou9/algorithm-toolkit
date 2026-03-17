@@ -1,4 +1,6 @@
-    ("Maths",    "3A", 1, "A11"),
+seances = [
+
+("Maths",    "3A", 1, "A11"),
     ("Maths",    "3A", 2, "A11"),
     ("Physique", "3A", 1, "B1"),
     ("Physique", "3A", 2, "B1"),
