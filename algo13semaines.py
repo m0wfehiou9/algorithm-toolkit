@@ -153,7 +153,6 @@ def coloration_graph(graph):
     color = {}
     nodes = list(graph.keys())
 
-    # Place the most constrained sessions first (fewer prof slots / more conflicts).
     nodes.sort(
         key=lambda n: (
             len(disponibilites_profs.get(profs[n[0]], set(range(len(slots))))),
