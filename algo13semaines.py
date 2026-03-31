@@ -206,7 +206,7 @@ for idx, emploi in enumerate(emplois_semestre):
         if not seances_du_jour:
             continue
 
-        print(f"── {jour} ──")
+        print(f"{jour} hg jhgf'p098")
         for (cours, classe, nb, salle), creneau in sorted(seances_du_jour, key=lambda x: x[1]):
             print(f"  {slots[creneau]:<16} | {cours:<42} | Classe {classe} | Salle {salle:<4} | {profs[cours]}")
         print()
@@ -219,8 +219,8 @@ for idx, emploi in enumerate(emplois_semestre):
             if emploi[s1] == emploi[s2] and sont_en_conflit(s1, s2):
                 cours1, classe1, _, salle1 = s1
                 cours2, classe2, _, salle2 = s2
-                print(f"  ⚠ CONFLIT : {cours1} ({classe1}) vs {cours2} ({classe2}) au créneau {slots[emploi[s1]]}")
+                print("   CONFLIT ")
                 conflits_trouves += 1
 
     if conflits_trouves == 0:
-        print("✓ Emploi du temps valide — aucun conflit.")
+        print(" Emploi du temps valide.")
