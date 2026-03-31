@@ -1,8 +1,6 @@
 from collections import defaultdict
 
-# =========================
-# ETAPE 1 : DONNEES
-# =========================
+
 seances = [
     # JM1
     ("Analyse2", "JM1", 1, "A31"),
@@ -125,9 +123,9 @@ def build_exact_cover(seances, profs):
     """
     primary_cols = {("SEANCE", i) for i in range(len(seances))}
 
-    rows = {}  # row_id -> set(cols couvertes)
-    row_info = {}  # row_id -> (idx_seance, slot)
-    col_to_rows = defaultdict(set)  # col -> set(row_id)
+    rows = {}  
+    row_info = {} 
+    col_to_rows = defaultdict(set)  
 
     row_id = 0
     for i, (matiere, classe, duree, salle) in enumerate(seances):
@@ -152,9 +150,7 @@ def build_exact_cover(seances, profs):
 # ETAPE 3 : ALGORITHM X
 # =========================
 def choose_column_mrv(primary_cols, col_to_rows, active_rows):
-    """
-    MRV: choisir la colonne primaire avec le moins de lignes possibles.
-    """
+   
     best_col = None
     best_count = None
     for col in primary_cols:
@@ -167,16 +163,11 @@ def choose_column_mrv(primary_cols, col_to_rows, active_rows):
 
 
 def algorithm_x(primary_cols, rows, col_to_rows):
-    """
-    Algorithm X:
-      - On doit couvrir toutes les colonnes primaires ('SEANCE', i).
-      - Les colonnes secondaires sont gérées via suppression des lignes incompatibles.
-    """
+   
     solution = []
     active_rows = set(rows.keys())
 
     def search(primary_cols, active_rows):
-        # Si plus de colonnes primaires => toutes les séances sont placées
         if not primary_cols:
             return True
 
@@ -188,13 +179,11 @@ def algorithm_x(primary_cols, rows, col_to_rows):
             solution.append(r)
             covered_cols = rows[r]
 
-            # Retirer colonnes primaires couvertes
             new_primary = set(primary_cols)
             for c in covered_cols:
                 if c in new_primary:
                     new_primary.remove(c)
 
-            # Désactiver toutes les lignes qui touchent une colonne couverte
             to_disable = set()
             for c in covered_cols:
                 to_disable |= (col_to_rows[c] & active_rows)
