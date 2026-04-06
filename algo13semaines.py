@@ -24,9 +24,9 @@ seances = [
     ("Sciences de l'ingénieur", "JM2", 1, "A33"),
     ("Projet études - conception", "JM2", 1, "A33"),
     ("Communication for working", "JM2", 1, "A33"),
-    ("Anglais G2", "JM2", 1, "A33"),
-    ("Communication G1", "JM2", 1, "A33"),
-    ("Communication G2", "JM2", 1, "A33"),
+    ("Anglais G2", "JM2", 1, "A35"),
+    ("Communication G1", "JM2", 1, "A34"),
+    ("Communication G2", "JM2", 1, "A35"),
 
     # JM3
     ("Mathématiques", "JM3", 1, "A11"),
@@ -34,10 +34,10 @@ seances = [
     ("Analyse des signaux & images", "JM3", 1, "A11"),
     ("Régulation industrielle", "JM3", 1, "A11"),
     ("Systèmes électroniques", "JM3", 1, "A11"),
-    ("Ingénierie Mécanique", "JM3", 1, "A11"),
-    ("Chimie", "JM3", 1, "A11"),
+    ("Ingénierie Mécanique", "JM3", 1, "A01"),
+    ("Chimie", "JM3", 1, "A01"),
     ("Projet études - conception", "JM3", 1, "A11"),
-    ("Electricité vect d'énergie", "JM3", 1, "A11"),
+    ("Electricité vect d'énergie", "JM3", 1, "A01"),
     ("Aide à la décision", "JM3", 1, "A11"),
     ("Principes de l'instrumentation", "JM3", 1, "A11"),
     ("Interculturalité", "JM3", 1, "A11"),
@@ -171,9 +171,18 @@ def coloration_graph(graph):
         random.shuffle(dispo_list)
 
         for c in dispo_list:
-            if c not in neighbor_colors:
-                color[node] = c
-                break
+            if c in neighbor_colors:
+                continue
+            if any(
+                v in color and
+                (v[1] == node[1] or profs[v[0]] == prof) and
+                abs(color[v] - c) == 1
+                for v in graph
+            ):
+                continue
+
+            color[node] = c
+            break
         else:
             raise Exception(f"Aucun créneau dispo pour {cours} ({prof})")
 
@@ -206,8 +215,8 @@ for idx, emploi in enumerate(emplois_semestre):
         if not seances_du_jour:
             continue
 
-        print(f"{jour} hg jhgf'p098")
-        for (cours, classe, nb, salle), creneau in sorted(seances_du_jour, key=lambda x: x[1]):
+        print(f"{jour} ")
+        for (cours, classe, nbseances, salle), creneau in sorted(seances_du_jour, key=lambda x: x[1]):
             print(f"  {slots[creneau]:<16} | {cours:<42} | Classe {classe} | Salle {salle:<4} | {profs[cours]}")
         print()
 
