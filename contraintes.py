@@ -18,3 +18,6 @@ for semaine in range(13):
 
 #doit generer un pdf de 13semaines par classe
 
+
+#contraintes 2 : eviter 2 seances de la meme matiere consecutives    // matieres scientifiques matin (couleur 1 2 5 6 9 10 13 14) // division euclidienne du module >13 sem
+
